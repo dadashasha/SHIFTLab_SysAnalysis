@@ -36,10 +36,10 @@
 
 ## Структура хранения данных
 #### Основные сущности:
-- **Пользователи (users):** данные о каждом пользователе.
-- **Задачи (tasks):** данные о задачах.
-- **Время (entries_time):** данные о потраченном на задачу времени.
-- **Предполагаемое время (estimated_time):** данные о предполагаемом для задачи времени.
+- **[Пользователи (users)](https://github.com/dadashasha/SHIFTLab_SysAnalysis/blob/main/%D0%A1%D1%82%D1%80%D1%83%D0%BA%D1%82%D1%83%D1%80%D1%8B%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85/1_users_table.sql):** данные о каждом пользователе.
+- **[Задачи (tasks)](https://github.com/dadashasha/SHIFTLab_SysAnalysis/blob/main/%D0%A1%D1%82%D1%80%D1%83%D0%BA%D1%82%D1%83%D1%80%D1%8B%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85/2_tasks_table.sql):** данные о задачах.
+- **[Время (entries_time)](https://github.com/dadashasha/SHIFTLab_SysAnalysis/blob/main/%D0%A1%D1%82%D1%80%D1%83%D0%BA%D1%82%D1%83%D1%80%D1%8B%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85/3_entries_time.sql):** данные о потраченном на задачу времени.
+- **[Предполагаемое время (estimated_time)](https://github.com/dadashasha/SHIFTLab_SysAnalysis/blob/main/%D0%A1%D1%82%D1%80%D1%83%D0%BA%D1%82%D1%83%D1%80%D1%8B%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85/4_estimated_time.sql):** данные о предполагаемом для задачи времени.
 
 ## Анализ конкурентов
 Исследованы следующие приложения с аналогичным функционалом:
