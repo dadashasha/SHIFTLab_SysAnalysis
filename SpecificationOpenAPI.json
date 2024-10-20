@@ -1,0 +1,533 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Time Tracker API",
+    "version": "1.0.0",
+    "description": "API for tracking time on tasks."
+  },
+  "paths": {
+    "/tasks": {
+      "post": {
+        "summary": "Create a new task.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "total_spend_time": {
+                    "type": "integer",
+                    "description": "Total time spent on the task in seconds."
+                  }
+                },
+                "required": ["name"]
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Task created successfully!"
+            },
+            "400": {
+              "description": "Invalid input! Please check your data."
+            },
+            "500": {
+              "description": "Server error!"
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Get all tasks.",
+        "responses": {
+          "200": {
+            "description": "Tasks retrieved successfully!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "task_id": {
+                        "type": "integer"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "total_spend_time": {
+                        "type": "integer"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error!"
+          }
+        }
+      }
+    },
+    "/tasks/{task_id}": {
+      "get": {
+        "summary": "Get a task by ID.",
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Task retrieved successfully!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "task_id": {
+                      "type": "integer"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "total_spend_time": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Task not found!"
+          },
+          "500": {
+            "description": "Server error!"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a task by ID.",
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "total_spend_time": {
+                    "type": "integer",
+                    "description": "Total time spent on the task in seconds."
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Task updated successfully!"
+            },
+            "404": {
+              "description": "Task not found!"
+            },
+            "400": {
+              "description": "Invalid input! Please check your data."
+            },
+            "500": {
+              "description": "Server error!"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a task by ID.",
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Task deleted successfully!"
+          },
+          "404": {
+            "description": "Task not found!"
+          },
+          "500": {
+            "description": "Server error!"
+          }
+        }
+      }
+    },
+    "/tasks/{task_id}/users/{user_id}/time": {
+      "post": {
+        "summary": "Record time spent by a user on a task.",
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "spend_time": {
+                    "type": "integer",
+                    "description": "Time spent in seconds."
+                  }
+                },
+                "required": ["spend_time"]
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Time added successfully!"
+            },
+            "400": {
+              "description": "Invalid input! Please check your data."
+            },
+            "404": {
+              "description": "Task or user not found!"
+            },
+            "500": {
+              "description": "Server error!"
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Get time spent by a user on a task.",
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Time retrieved successfully!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "task_id": {
+                      "type": "integer"
+                    },
+                    "user_id": {
+                      "type": "integer"
+                    },
+                    "spend_time": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input! Please check your data."
+          },
+          "404": {
+            "description": "Task or user not found!"
+          },
+          "500": {
+            "description": "Server error!"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deleting data about the time spent by the user on a task.",
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Data deleted successfully!"
+          },
+          "400": {
+            "description": "Invalid input! Please check your data."
+          },
+          "404": {
+            "description": "Task or user not found!"
+          },
+          "500": {
+            "description": "Server error!"
+          }
+        }
+      }
+    },
+    "/users": {
+      "post": {
+        "summary": "Create a new user.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "fullname": {
+                    "type": "string"
+                  }
+                },
+                "required": ["fullname"]
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "User created successfully!"
+            },
+            "400": {
+              "description": "Invalid input! Please check your data."
+            },
+            "500": {
+              "description": "Server error!"
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Get all users.",
+        "responses": {
+          "200": {
+            "description": "Users retrieved successfully!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "user_id": {
+                        "type": "integer"
+                      },
+                      "fullname": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error!"
+          }
+        }
+      }
+    },
+    "/users/{user_id}": {
+      "get": {
+        "summary": "Get a user by ID.",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User retrieved successfully!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "user_id": {
+                      "type": "integer"
+                    },
+                    "fullname": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found!"
+          },
+          "500": {
+            "description": "Server error!"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a user by ID.",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "User deleted successfully!"
+          },
+          "404": {
+            "description": "User not found!"
+          },
+          "500": {
+            "description": "Server error!"
+          }
+        }
+      }
+    },
+    "/users/{user_id}/time": {
+      "delete": {
+        "summary": "Delete all time tracking data for a user.",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Data deleted successfully!"
+          },
+          "400": {
+            "description": "Invalid input! Please check your data."
+          },
+          "404": {
+            "description": "User not found!"
+          },
+          "500": {
+            "description": "Server error!"
+          }
+        }
+      }
+    },
+    "/tasks/{task_id}/time": {
+      "get": {
+        "summary": "Get total time spent on a task by all users.",
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Time retrieved successfully!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "task_id": {
+                      "type": "integer"
+                    },
+                    "total_spend_time": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input! Please check your data."
+          },
+          "404": {
+            "description": "Task not found!"
+          },
+          "500": {
+            "description": "Server error!"
+          }
+        }
+      }
+    }
+  }
+}
