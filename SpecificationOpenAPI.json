@@ -188,6 +188,53 @@
         }
       }
     },
+    "/tasks/{task_id}/{estimate_time}": {
+  "post": {
+    "summary": "Set estimated time for a task.",
+    "parameters": [
+      {
+        "name": "task_id",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        }
+      }
+    ],
+    "requestBody": {
+      "required": true,
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "estimated_time": {
+                "type": "integer",
+                "description": "Estimated time in minutes."
+              }
+            },
+            "required": ["estimated_time"]
+          }
+        }
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "Estimated time set successfully!"
+      },
+      "400": {
+        "description": "Invalid input! Please check your data."
+      },
+      "404": {
+        "description": "Task not found!"
+      },
+      "500": {
+        "description": "Server error!"
+      }
+    }
+  }
+}
+
     "/tasks/{task_id}/users/{user_id}/time": {
       "post": {
         "summary": "Record time spent by a user on a task.",
