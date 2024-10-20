@@ -21,7 +21,7 @@
                   },
                   "total_spend_time": {
                     "type": "integer",
-                    "description": "Total time spent on the task in seconds."
+                    "description": "Total time spent on the task in minutes."
                   }
                 },
                 "required": ["name"]
@@ -141,7 +141,7 @@
                   },
                   "total_spend_time": {
                     "type": "integer",
-                    "description": "Total time spent on the task in seconds."
+                    "description": "Total time spent on the task in minutes."
                   }
                 }
               }
@@ -218,7 +218,7 @@
                 "properties": {
                   "spend_time": {
                     "type": "integer",
-                    "description": "Time spent in seconds."
+                    "description": "Time spent in minutes."
                   }
                 },
                 "required": ["spend_time"]
