@@ -17,7 +17,7 @@
 
 
 ## Спецификация API
-Спецификация в формате OpenAPI/Swagger endpoint'ов для реализации описаных выше требований заказчика доступна по ссылке: [SpecificationOpenAPI.json](https://github.com/dadashasha/SHIFTLab_SysAnalysis/blob/main/SpecificationOpenAPI.json).
+Спецификация в формате OpenAPI/Swagger endpoint'ов для реализации описаных выше требований заказчика доступна по ссылке: [SpecificationOpenAPI.json](https://github.com/dadashasha/SHIFTLab_SysAnalysis/blob/main/SpecificationOpenAPI.yaml).
 
 ### Эндпоинты:
 #### Задачи
